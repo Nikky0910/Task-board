@@ -9,7 +9,17 @@ if (taskList === null) {
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-
+  if (nextId === null) {
+    nextId = 0;
+    let taskId = nextId + 1;
+    localStorage.setItem("nextId", `${taskId}`);
+    return taskId;
+  } else {
+    nextId = JSON.parse(localStorage.getItem("nextId"));
+    let taskId = nextId + 1;
+    localStorage.setItem("nextId", `${taskId}`);
+    return taskId;
+  }
 }
 
 // Todo: create a function to create a task card
@@ -17,20 +27,23 @@ function createTaskCard(task) {
   let cardDescription = $('<p class="card-text">');
   let cardDate = $('<p class="card-text">');
   let deleteButton = $('<a href="#" class="btn btn-danger">');
-  deleteButton.text('Delete');
+  deleteButton.text("Delete");
   let cardBody = $('<div class="card-body">');
   let todoCards = $("#todo-cards");
-  
-  let cardHeader= $('<h5 class="card-header">');
-  let card= $('<div class="card mb-3">');
+
+  let cardHeader = $('<h5 class="card-header">');
+  let card = $('<div class="card mb-3">');
 
   todoCards.append(card);
   card.append([cardHeader, cardBody]);
   cardBody.append([cardDescription, cardDate, deleteButton]);
-  
+
   cardHeader.text(`${task.title}`);
   cardDescription.text(`${task.taskDescription}`);
   cardDate.text(`${task.date}`);
+
+  card.attr('id',`card-${generateTaskId()}`);
+  deleteButton.attr('data-card', `${card.attr('id')}`);
 }
 
 // Todo: create a function to render the task list and make cards draggable
@@ -52,16 +65,13 @@ function handleAddTask(event) {
   localStorage.setItem("tasks", JSON.stringify(taskList));
 
   createTaskCard(task);
-  $("#input-title").val('');
-  $("#due-date").val('');
-  $("#description").val('');
-
+  $("#input-title").val("");
+  $("#due-date").val("");
+  $("#description").val("");
 }
 
 // Todo: create a function to handle deleting a task
-function handleDeleteTask(event) {
-
-}
+function handleDeleteTask(event) {}
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {}
@@ -70,5 +80,4 @@ function handleDrop(event, ui) {}
 $(document).ready(function () {
   const addTaskButton = $("#add-task");
   addTaskButton.on("click", handleAddTask);
-
 });
