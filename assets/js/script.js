@@ -92,5 +92,5 @@ function handleDrop(event, ui) {
 $(document).ready(function () {
   const addTaskButton = $("#add-task");
   addTaskButton.on("click", handleAddTask);
-  
+  renderTaskList();
 });
