@@ -10,7 +10,7 @@ N/A
 
 ## Usage
 
-Please find below the link to access the link to the live website, as well as the project's files:
+Please find below the link to access the project's files, as well as the live website:
 
 Github project: 
 
@@ -24,7 +24,7 @@ https://nikky0910.github.io/Task-board/
 
 ## Credits
 
-Please see below to libraries used for the project:
+Please see below the links to the libraries used for the project:
 
 
 ## License
