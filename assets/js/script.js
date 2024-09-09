@@ -44,10 +44,15 @@ function createTaskCard(task) {
 
   card.attr('id',`card-${generateTaskId()}`);
   deleteButton.attr('data-card', `${card.attr('id')}`);
+  deleteButton.on('click', handleDeleteTask);
 }
 
 // Todo: create a function to render the task list and make cards draggable
-function renderTaskList() {}
+function renderTaskList() {
+  for(task of taskList){
+    createTaskCard(task);
+  }
+}
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {
@@ -71,13 +76,21 @@ function handleAddTask(event) {
 }
 
 // Todo: create a function to handle deleting a task
-function handleDeleteTask(event) {}
+function handleDeleteTask(event) {
+  event.target;
+  let idValue= $(event.target).attr('data-card');
+  let removeEl= document.getElementById(idValue);
+  removeEl.remove();
+}
 
 // Todo: create a function to handle dropping a task into a new status lane
-function handleDrop(event, ui) {}
+function handleDrop(event, ui) {
+
+}
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
   const addTaskButton = $("#add-task");
   addTaskButton.on("click", handleAddTask);
+  
 });
