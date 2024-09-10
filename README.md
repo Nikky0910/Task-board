@@ -26,6 +26,11 @@ https://nikky0910.github.io/Task-board/
 
 Please see below the links to the libraries used for the project:
 
+Bootstrap:
+https://getbootstrap.com/
+
+jQuery:
+https://jquery.com/ 
 
 ## License
 
